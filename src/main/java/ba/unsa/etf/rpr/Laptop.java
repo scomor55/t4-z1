@@ -107,6 +107,11 @@ public class Laptop implements LaptopDao{
     }
 
     @Override
+    public Laptop getLaptop(int i) {
+        return null;
+    }
+
+    @Override
     public void napuniListu(ArrayList<Laptop> laptopi) {
 
     }

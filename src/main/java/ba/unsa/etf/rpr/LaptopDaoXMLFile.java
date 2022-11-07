@@ -1,30 +1,37 @@
 package ba.unsa.etf.rpr;
+
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LaptopDaoJSONFile implements LaptopDao{
+public class LaptopDaoXMLFile implements LaptopDao {
+
     private ArrayList<Laptop> laptopi;
     private File file;
+
     @Override
     public void dodajLaptopUListu(Laptop laptop) {
-        laptopi.add(laptop);
+    laptopi.add(laptop);
     }
+
     @Override
     public void dodajLaptopUFile(Laptop laptop) throws IOException {
-        JsonMapper novi = new JsonMapper();
+        XmlMapper novi = new XmlMapper();
         FileOutputStream f = new FileOutputStream(file);
         String s = novi.writeValueAsString(laptop);
         f.write(s.getBytes());
         f.close();
     }
+
     @Override
     public Laptop getLaptop() {
         return laptopi.get(0);
     }
+
     @Override
     public Laptop getLaptop(int i) {
         return laptopi.get(i);
@@ -36,17 +43,14 @@ public class LaptopDaoJSONFile implements LaptopDao{
             laptopi.add(racunar);
         }
     }
+
     @Override
     public void dodajLaptopUListu() {
         laptopi.add(racunar);
     }
+
     @Override
     public void vratiPodatkeIzDatoteke() {
-        JsonMapper novi = new JsonMapper();
-        try {
-            FileOutputStream f = new FileOutputStream(novi.toString());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 }
